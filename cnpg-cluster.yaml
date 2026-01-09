@@ -44,9 +44,9 @@ spec:
   steps:
     - id: generate
       name: Generate CNPG YAML
-      action: fetch:plain
+      action: fs:write
       input:
-        targetPath: postgres-cluster.yaml
+        path: postgres-cluster.yaml
         content: |
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
@@ -61,8 +61,9 @@ spec:
               initdb:
                 database: ${{ parameters.database }}
                 owner: ${{ parameters.owner }}
-  
+
   output:
     links:
       - title: Download YAML
         url: ./postgres-cluster.yaml
+
