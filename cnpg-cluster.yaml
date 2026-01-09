@@ -42,11 +42,12 @@ spec:
           default: 1Gi
 
   steps:
-    - id: show
-      name: Show generated YAML
-      action: debug:log
+    - id: generate
+      name: Generate CNPG YAML
+      action: fetch:plain
       input:
-        message: |
+        targetPath: postgres-cluster.yaml
+        content: |
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
           metadata:
@@ -60,3 +61,8 @@ spec:
               initdb:
                 database: ${{ parameters.database }}
                 owner: ${{ parameters.owner }}
+  
+  output:
+    links:
+      - title: Download YAML
+        url: ./postgres-cluster.yaml
