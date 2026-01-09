@@ -10,9 +10,7 @@ spec:
 
   parameters:
     - title: Basis
-      required:
-        - name
-        - namespace
+      required: [name, namespace]
       properties:
         name:
           type: string
@@ -21,10 +19,8 @@ spec:
           type: string
           title: Namespace
 
-    - title: database
-      required:
-        - database
-        - owner
+    - title: Database
+      required: [database, owner]
       properties:
         database:
           type: string
@@ -34,9 +30,7 @@ spec:
           title: Database Owner
 
     - title: Ressourcen
-      required:
-        - instances
-        - size
+      required: [instances, size]
       properties:
         instances:
           type: number
@@ -48,12 +42,11 @@ spec:
           default: 1Gi
 
   steps:
-    - id: generate
-      name: Generate CNPG YAML
-      action: fs:write
+    - id: show
+      name: Show generated YAML
+      action: debug:log
       input:
-        path: postgres-cluster.yaml
-        content: |
+        message: |
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
           metadata:
@@ -67,8 +60,3 @@ spec:
               initdb:
                 database: ${{ parameters.database }}
                 owner: ${{ parameters.owner }}
-
-  output:
-    links:
-      - title: Download YAML
-        url: ./postgres-cluster.yaml
