@@ -63,4 +63,4 @@ spec:
   output:
     links:
       - title: Open generated GitHub repository
-        url: {{ steps.publish.output.remoteUrl }}
+        url: "{{ steps.publish.output.remoteUrl }}"
