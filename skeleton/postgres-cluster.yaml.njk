@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ parameters.name }}
+  namespace: {{ parameters.namespace }}
+spec:
+  instances: {{ parameters.instances }}
+  storage:
+    size: {{ parameters.size }}
+  bootstrap:
+    initdb:
+      database: {{ parameters.database }}
+      owner: {{ parameters.owner }}
