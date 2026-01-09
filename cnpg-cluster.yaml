@@ -1,0 +1,74 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: cnpg-postgres
+  title: CNPG PostgreSQL Cluster
+  description: PostgreSQL Cluster for CloudNativePG
+spec:
+  owner: user:guest
+  type: service
+
+  parameters:
+    - title: Basis
+      required:
+        - name
+        - namespace
+      properties:
+        name:
+          type: string
+          title: Cluster Name
+        namespace:
+          type: string
+          title: Namespace
+
+    - title: database
+      required:
+        - database
+        - owner
+      properties:
+        database:
+          type: string
+          title: Database Name
+        owner:
+          type: string
+          title: Database Owner
+
+    - title: Ressourcen
+      required:
+        - instances
+        - size
+      properties:
+        instances:
+          type: number
+          title: Instances
+          default: 2
+        size:
+          type: string
+          title: Storage Size
+          default: 1Gi
+
+  steps:
+    - id: generate
+      name: Generate CNPG YAML
+      action: fs:write
+      input:
+        path: postgres-cluster.yaml
+        content: |
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata:
+            name: ${{ parameters.name }}
+            namespace: ${{ parameters.namespace }}
+          spec:
+            instances: ${{ parameters.instances }}
+            storage:
+              size: ${{ parameters.size }}
+            bootstrap:
+              initdb:
+                database: ${{ parameters.database }}
+                owner: ${{ parameters.owner }}
+
+  output:
+    links:
+      - title: Download YAML
+        url: ./postgres-cluster.yaml
