@@ -1,0 +1,34 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: test-template
+  title: Test Template
+  description: Minimaler Test für den Backstage Scaffolder
+spec:
+  owner: user:guest
+  type: service
+
+  parameters:
+    - title: Basis Infos
+      required:
+        - name
+      properties:
+        name:
+          title: Service Name
+          type: string
+          description: Name des Test-Services
+
+  steps:
+    - id: log
+      name: Log something
+      action: debug:log
+      input:
+        message: |
+          🎉 Scaffolder läuft!
+          Service-Name: ${{ parameters.name }}
+
+  output:
+    links:
+      - title: Fertig
+        icon: check
+        url: https://backstage.io
