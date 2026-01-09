@@ -46,7 +46,7 @@ spec:
       name: Generate CNPG YAML
       action: fetch:template
       input:
-        url: ./skeleton
+        url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
         targetPath: .
 
   output:
