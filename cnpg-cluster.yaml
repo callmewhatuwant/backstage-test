@@ -52,8 +52,15 @@ spec:
       input:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
         targetPath: .
+
+    - id: publish
+      action: publish:github
+      input:
+        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
+        description: Generated CNPG PostgreSQL Cluster
+        defaultBranch: main
       
   output:
     links:
-      - title: Download CNPG YAML
-        url: /api/scaffolder/v2/tasks/{{ task.id }}/files/postgres-cluster.yaml
+      - title: Open generated GitHub repository
+        url: {{ steps.publish.output.remoteUrl }}
