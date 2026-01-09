@@ -50,6 +50,8 @@ spec:
         targetPath: .
 
   output:
-    links:
-      - title: Download YAML
-        url: ./files/postgres-cluster.yaml
+    text:
+      - title: CNPG Cluster YAML
+        content: |
+          👉 Download:
+          [/api/scaffolder/v2/tasks/{{ steps.generate.taskId }}/files/postgres-cluster.yaml]
