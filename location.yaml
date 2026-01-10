@@ -5,4 +5,4 @@ metadata:
 spec:
   type: url
   targets:
-    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/guest-user.yaml
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/user.yaml
