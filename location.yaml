@@ -1,1 +1,8 @@
-
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: users
+spec:
+  type: url
+  targets:
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/guest-user.yaml
