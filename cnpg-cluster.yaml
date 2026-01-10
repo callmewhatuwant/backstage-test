@@ -4,7 +4,6 @@ metadata:
   name: cnpg-postgres
   title: CNPG PostgreSQL Cluster
   description: PostgreSQL Cluster for CloudNativePG
-
 spec:
   owner: user:guest
   type: service
@@ -53,18 +52,8 @@ spec:
       input:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
         targetPath: .
-
-    - id: gist
-      name: Publish YAML as GitHub Gist
-      action: publish:github:gist
-      input:
-        description: CNPG Cluster {{ parameters.name }}
-        public: false
-        files:
-          postgres-cluster.yaml: postgres-cluster.yaml
-
   output:
-    links:
-      - title: Open generated YAML (GitHub Gist)
-        url: "{{ steps.gist.output.htmlUrl }}"
-
+    text:
+      - title: Generated CNPG YAML
+        content: |
+          {{ steps.generate.output.files['postgres-cluster.yaml'] }}
