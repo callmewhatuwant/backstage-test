@@ -15,11 +15,9 @@ spec:
       properties:
         name:
           type: string
-          title: Cluster Name
           default: test
         namespace:
           type: string
-          title: Namespace
           default: test
 
     - title: Database
@@ -27,11 +25,9 @@ spec:
       properties:
         database:
           type: string
-          title: Database Name
           default: test
         owner:
           type: string
-          title: Database Owner
           default: test
 
     - title: Ressourcen
@@ -39,11 +35,9 @@ spec:
       properties:
         instances:
           type: number
-          title: Instances
           default: 2
         size:
           type: string
-          title: Storage Size
           default: 1Gi
 
   steps:
@@ -58,8 +52,8 @@ spec:
       name: Publish to GitHub
       action: publish:github
       input:
-        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
-        description: CNPG PostgreSQL cluster {{ parameters.name }}
+        repoUrl: github.com?owner=callmewhatuwant&repo={{ name }}-cnpg
+        description: CNPG PostgreSQL cluster {{ name }}
         defaultBranch: main
 
   output:
