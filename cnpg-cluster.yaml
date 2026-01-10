@@ -13,24 +13,36 @@ spec:
       properties:
         name:
           type: string
+          title: Cluster Name
+          default: test
         namespace:
           type: string
+          title: Namespace
+          default: test
 
     - title: Database
       required: [database, owner]
       properties:
         database:
           type: string
+          title: Database Name
+          default: test
         owner:
           type: string
+          title: Database Owner
+          default: test
 
     - title: Ressourcen
       required: [instances, size]
       properties:
         instances:
           type: number
+          title: Instances
+          default: 2
         size:
           type: string
+          title: Storage Size
+          default: 1Gi
 
   steps:
     - id: generate
