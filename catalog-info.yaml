@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Location
 metadata:
-  name: backstage-test
+  name: cnpg-templates
 spec:
-  type: service
-  lifecycle: experimental
-  owner: user:guest
+  type: url
+  targets:
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/cnpg-template.yaml
