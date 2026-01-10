@@ -49,7 +49,6 @@ spec:
       action: fetch:template
       input:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main
-        targetPath: ./skeleton
 
     - id: publish
       action: publish:github
