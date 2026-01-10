@@ -5,4 +5,4 @@ metadata:
 spec:
   type: url
   targets:
-    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/cnpg-template.yaml
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/template.yaml
