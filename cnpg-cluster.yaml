@@ -64,7 +64,6 @@ spec:
         repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.repoName }}
         description: CNPG PostgreSQL Cluster YAML
         defaultBranch: main
-        visibility: public
 
   output:
     links:
