@@ -3,8 +3,9 @@ kind: Location
 metadata:
   name: cnpg-templates
 spec:
-  - type: url
-    target: https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/cnpg-cluster.yaml
-  - type: url
-    target: https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/test.yaml
+  type: url
+  targets:
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/cnpg-cluster.yaml
+    - https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/test.yaml
+
   
