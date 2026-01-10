@@ -58,13 +58,12 @@ spec:
         targetPath: .
 
     - id: publish
-      name: Publish to GitHub
+      name: Publish to GitHub (PUBLIC)
       action: publish:github
       input:
-        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.repoName }}
-        description: CNPG PostgreSQL Cluster YAML
+        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
+        description: CNPG PostgreSQL YAML (generated)
         defaultBranch: main
-        private: false
 
   output:
     links:
