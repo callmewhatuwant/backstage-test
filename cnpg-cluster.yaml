@@ -42,8 +42,10 @@ spec:
     - id: debug
       action: debug:log
       input:
-        message: |
+        message: |-
+    
           ===== RENDERED CNPG CLUSTER =====
+    
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
           metadata:
@@ -57,4 +59,6 @@ spec:
               initdb:
                 database: {{ parameters.database }}
                 owner: {{ parameters.owner }}
-          ===== END =====
+    
+          ===== END =====eters.owner }}
+              ===== END =====
