@@ -42,7 +42,7 @@ spec:
     - id: publish
       action: publish:github
       input:
-        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
+        repoUrl: github.com?owner=callmewhatuwant&repo=cnpg-clusters
         description: Generated CNPG YAML
         defaultBranch: main
 
