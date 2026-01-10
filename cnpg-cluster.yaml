@@ -3,69 +3,50 @@ kind: Template
 metadata:
   name: cnpg-postgres
   title: CNPG PostgreSQL Cluster
-  description: Generate CNPG YAML and publish to GitHub
 spec:
   owner: user:guest
   type: service
 
   parameters:
     - title: Basis
-      required: [name, namespace, repoName]
+      required: [name, namespace]
       properties:
         name:
           type: string
-          title: Cluster Name
-          default: test
         namespace:
           type: string
-          title: Namespace
-          default: test
-        repoName:
-          type: string
-          title: GitHub Repository Name
-          default: cnpg-cluster
 
     - title: Database
       required: [database, owner]
       properties:
         database:
           type: string
-          title: Database Name
-          default: test
         owner:
           type: string
-          title: Database Owner
-          default: test
 
     - title: Ressourcen
       required: [instances, size]
       properties:
         instances:
           type: number
-          title: Instances
-          default: 2
         size:
           type: string
-          title: Storage Size
-          default: 1Gi
 
   steps:
-    - id: fetch
-      name: Generate CNPG YAML
+    - id: generate
       action: fetch:template
       input:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
-        targetPath: .
+        targetPath: ./output
 
     - id: publish
-      name: Publish to GitHub (PUBLIC)
       action: publish:github
       input:
         repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
-        description: CNPG PostgreSQL YAML (generated)
+        description: Generated CNPG YAML
         defaultBranch: main
 
   output:
     links:
-      - title: GitHub Repository
-        url: https://github.com/callmewhatuwant/{{ parameters.repoName }}
+      - title: Open GitHub Repository
+        url: https://github.com/callmewhatuwant/{{ parameters.name }}-cnpg
