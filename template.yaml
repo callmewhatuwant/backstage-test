@@ -18,7 +18,7 @@ spec:
         namespace:
           type: string
           title: Namespace
-          default: test
+
 
     - title: Database
       required: [database, owner]
