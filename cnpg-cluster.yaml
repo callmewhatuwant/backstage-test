@@ -48,8 +48,8 @@ spec:
     - id: generate
       action: fetch:template
       input:
-        url: https://github.com/callmewhatuwant/backstage-test/blob/main/skeleton/postgres-cluster.yaml.njk
-        targetPath: ./output
+        url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main
+        targetPath: ./skeleton
 
     - id: publish
       action: publish:github
