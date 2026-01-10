@@ -6,5 +6,5 @@ spec:
   - type: url
     target: https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/cnpg-cluster.yaml
   - type: url
-    target:
+    target: https://raw.githubusercontent.com/callmewhatuwant/backstage-test/refs/heads/main/test.yaml
   
