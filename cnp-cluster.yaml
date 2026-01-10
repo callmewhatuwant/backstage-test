@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: cnpg-postgres
-  title: CNPG PostgreSQL Cluster
+  name: cnpg-debug-inline
+  title: CNPG Inline Debug
 spec:
   owner: user:guest
   type: service
@@ -13,23 +13,19 @@ spec:
       properties:
         name:
           type: string
-          title: Cluster Name
           default: test
         namespace:
           type: string
-          title: Namespace
-
+          default: test
 
     - title: Database
       required: [database, owner]
       properties:
         database:
           type: string
-          title: Database Name
           default: test
         owner:
           type: string
-          title: Database Owner
           default: test
 
     - title: Ressourcen
@@ -37,27 +33,28 @@ spec:
       properties:
         instances:
           type: number
-          title: Instances
           default: 2
         size:
           type: string
-          title: Storage Size
           default: 1Gi
 
   steps:
-    - id: generate
-      action: fetch:template
+    - id: debug
+      action: debug:log
       input:
-        url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main
-
-    - id: publish
-      action: publish:github
-      input:
-        repoUrl: github.com?owner=callmewhatuwant&repo=cnpg-clusters
-        description: Generated CNPG YAML
-        defaultBranch: main
-
-  output:
-    links:
-      - title: Open GitHub Repository
-        url: https://github.com/callmewhatuwant/repo=cnpg-clusters
+        message: |
+          ===== RENDERED CNPG CLUSTER =====
+          apiVersion: postgresql.cnpg.io/v1
+          kind: Cluster
+          metadata:
+            name: {{ parameters.name }}
+            namespace: {{ parameters.namespace }}
+          spec:
+            instances: {{ parameters.instances }}
+            storage:
+              size: {{ parameters.size }}
+            bootstrap:
+              initdb:
+                database: {{ parameters.database }}
+                owner: {{ parameters.owner }}
+          ===== END =====
