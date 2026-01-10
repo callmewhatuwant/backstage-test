@@ -3,7 +3,5 @@ kind: Location
 metadata:
   name: cnpg-templates
 spec:
-  type: url
-  targets:
-    #- https://raw.githubusercontent.com/callmewhatuwant/backstage-test/main/template.yaml
-    - https://github.com/callmewhatuwant/backstage-test/blob/main/template.yaml
+  type: github-discovery
+  target: https://github.com/callmewhatuwant/backstage-test
