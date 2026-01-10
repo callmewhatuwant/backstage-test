@@ -61,7 +61,6 @@ spec:
         repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
         description: CNPG PostgreSQL cluster {{ parameters.name }}
         defaultBranch: main
-        private: true
 
   output:
     links:
