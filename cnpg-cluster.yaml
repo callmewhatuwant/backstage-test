@@ -49,16 +49,15 @@ spec:
           apiVersion: postgresql.cnpg.io/v1
           kind: Cluster
           metadata:
-            name: {{ parameters.name }}
-            namespace: {{ parameters.namespace }}
+            name: ${{ parameters.name }}
+            namespace: ${{ parameters.namespace }}
           spec:
-            instances: {{ parameters.instances }}
+            instances: ${{ parameters.instances }}
             storage:
-              size: {{ parameters.size }}
+              size: ${{ parameters.size }}
             bootstrap:
               initdb:
-                database: {{ parameters.database }}
-                owner: {{ parameters.owner }}
+                database: ${{ parameters.database }}
+                owner: ${{ parameters.owner }}
     
-          ===== END =====eters.owner }}
-              ===== END =====
+          ===== END =====
