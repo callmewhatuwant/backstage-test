@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: cnpg-postgres
   title: CNPG PostgreSQL Cluster
-  description: PostgreSQL Cluster for CloudNativePG
+  description: Generate CNPG YAML and publish to GitHub
 
 spec:
   owner: user:guest
@@ -15,9 +15,11 @@ spec:
       properties:
         name:
           type: string
+          title: Cluster Name
           default: test
         namespace:
           type: string
+          title: Namespace
           default: test
 
     - title: Database
@@ -25,9 +27,11 @@ spec:
       properties:
         database:
           type: string
+          title: Database Name
           default: test
         owner:
           type: string
+          title: Database Owner
           default: test
 
     - title: Ressourcen
@@ -35,9 +39,11 @@ spec:
       properties:
         instances:
           type: number
+          title: Instances
           default: 2
         size:
           type: string
+          title: Storage Size
           default: 1Gi
 
   steps:
@@ -48,14 +54,16 @@ spec:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
         targetPath: .
 
-    - id: read
-      name: Read generated YAML
-      action: fs:read
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
       input:
-        path: postgres-cluster.yaml
+        repoUrl: github.com?owner=callmewhatuwant&repo={{ parameters.name }}-cnpg
+        description: CNPG PostgreSQL cluster {{ parameters.name }}
+        defaultBranch: main
+        private: true
 
   output:
-    text:
-      - title: Generated CNPG YAML
-        content: |
-          {{ steps.read.output.content }}
+    links:
+      - title: Open GitHub Repository
+        url: "{{ steps.publish.output.remoteUrl }}"
