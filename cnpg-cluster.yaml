@@ -4,6 +4,7 @@ metadata:
   name: cnpg-postgres
   title: CNPG PostgreSQL Cluster
   description: PostgreSQL Cluster for CloudNativePG
+
 spec:
   owner: user:guest
   type: service
@@ -14,11 +15,9 @@ spec:
       properties:
         name:
           type: string
-          title: Cluster Name
           default: test
         namespace:
           type: string
-          title: Namespace
           default: test
 
     - title: Database
@@ -26,11 +25,9 @@ spec:
       properties:
         database:
           type: string
-          title: Database Name
           default: test
         owner:
           type: string
-          title: Database Owner
           default: test
 
     - title: Ressourcen
@@ -38,11 +35,9 @@ spec:
       properties:
         instances:
           type: number
-          title: Instances
           default: 2
         size:
           type: string
-          title: Storage Size
           default: 1Gi
 
   steps:
@@ -52,8 +47,15 @@ spec:
       input:
         url: github.com?owner=callmewhatuwant&repo=backstage-test&branch=main&path=skeleton
         targetPath: .
+
+    - id: read
+      name: Read generated YAML
+      action: fs:read
+      input:
+        path: postgres-cluster.yaml
+
   output:
     text:
       - title: Generated CNPG YAML
         content: |
-          {{ steps.generate.output.files['postgres-cluster.yaml'] }}
+          {{ steps.read.output.content }}
